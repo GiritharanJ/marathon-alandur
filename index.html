@@ -76,22 +76,92 @@
 </main>
 <script src="app.js"></script>
 <script>
-document.getElementById("gp").textContent=GPAY_NUMBER;
-if(UPI_ID)document.getElementById("upi").textContent="UPI ID: "+UPI_ID;
-const f=document.getElementById("f"),err=document.getElementById("err"),go=document.getElementById("go");
-f.addEventListener("submit",async e=>{
-  e.preventDefault();err.textContent="";
-  if(!f.checkValidity()){f.reportValidity();return}
-  go.disabled=true;go.textContent="Submitting...";
-  try{
-    const d=new FormData(f);
-    const url=await uploadFile(d.get("shot"),"payments");
-    const {error}=await sb.from("registrations").insert({
-      full_name:d.get("full_name").trim(),age_group:d.get("age_group"),gender:d.get("gender"),
-      mobile:d.get("mobile"),whatsapp:d.get("whatsapp")||d.get("mobile"),area:d.get("area").trim(),
-      tshirt:d.get("tshirt"),health:d.get("health").trim(),screenshot_url:url});
-    if(error)throw error;
-    f.hidden=true;document.getElementById("done").hidden=false;scrollTo(0,0);
-  }catch(x){err.textContent="Could not submit: "+(x.message||x)+" — please retry or call 9384280149.";go.disabled=false;go.textContent="Submit registration / பதிவு செய்"}
+const f = document.getElementById("f");
+const err = document.getElementById("err");
+const go = document.getElementById("go");
+
+f.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  err.textContent = "";
+  go.disabled = true;
+  go.textContent = "Submitting...";
+
+  try {
+    if (!f.checkValidity()) {
+      f.reportValidity();
+      go.disabled = false;
+      go.textContent = "Submit registration / பதிவு செய்";
+      return;
+    }
+
+    const d = new FormData(f);
+
+    // Upload payment screenshot
+    const file = d.get("shot");
+
+    if (!file || file.size === 0) {
+      throw new Error("Payment screenshot is required");
+    }
+
+    const screenshotUrl = await uploadFile(file, "payments");
+
+    // Insert registration
+    const { data, error } = await sb
+      .from("registrations")
+      .insert({
+        full_name: d.get("full_name").trim(),
+
+        phone: d.get("mobile"),
+
+        gender: d.get("gender"),
+
+        address: d.get("area").trim(),
+
+        tshirt_size: d.get("tshirt"),
+
+        payment_amount: 300,
+
+        payment_method: "UPI / Bank Transfer",
+
+        payment_screenshot: screenshotUrl,
+
+        payment_status: "Pending",
+
+        registration_status: "Pending"
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error("Supabase insert error:", error);
+      throw error;
+    }
+
+    console.log("Registration saved:", data);
+
+    // Hide form
+    f.hidden = true;
+
+    // Show success message
+    document.getElementById("done").hidden = false;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  } catch (x) {
+
+    console.error("Registration error:", x);
+
+    err.textContent =
+      "Could not submit: " +
+      (x.message || x) +
+      " — please retry or call 9384280149.";
+
+    go.disabled = false;
+    go.textContent = "Submit registration / பதிவு செய்";
+  }
 });
 </script></body></html>
