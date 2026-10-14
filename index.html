@@ -1,0 +1,62 @@
+<!doctype html><html lang="ta"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>போதை விழிப்புணர்வு மாரத்தான் 2026 - பதிவு</title>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
+<body>
+<header class="hero">
+<p class="brand">CHENNAI MARATHON FRIENDS</p>
+<h1 class="title">போதை விழிப்புணர்வு<br><b>மாரத்தான் - 2026</b></h1>
+<p class="sub">புகையிலை, மது, போதைப் பொருட்கள் சமூகத் தீமைகளுக்கு எதிரான விழிப்புணர்வு ஓட்டம்</p>
+<div class="facts">
+<div class="fact f1"><h4>நாள்</h4><p>31/10/2026<br>சனிக்கிழமை</p></div>
+<div class="fact f2"><h4>நேரம்</h4><p>காலை 5:00 மணி</p></div>
+<div class="fact f3"><h4>இடம்</h4><p>ஆலந்தூர் நீதிமன்றம், சென்னை</p></div>
+<div class="fact f4"><h4>கட்டணம்</h4><p>Rs. 300</p></div>
+<div class="fact f5"><h4>தொடர்புக்கு</h4><p>9384280149<br>8122228155</p></div>
+</div></header>
+<nav><a href="sponsor.html">Become a sponsor / ஸ்பான்சர் ஆகுங்கள்</a></nav>
+<main>
+<form id="f" class="card" novalidate>
+<h2>பதிவு படிவம்</h2>
+<label>முழுப்பெயர் <i>*</i><input name="full_name" required></label>
+<label>வயது பிரிவு <i>*</i></label>
+<div class="opts"><label><input type="radio" name="age_group" value="6-13" required>6-13</label><label><input type="radio" name="age_group" value="13-17">13-17</label><label><input type="radio" name="age_group" value="18-40">18-40</label><label><input type="radio" name="age_group" value="40+">40+</label></div>
+<label>மொபைல் எண் <i>*</i><input name="mobile" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required></label>
+<label>WhatsApp எண்<input name="whatsapp" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10"></label>
+<label>பாலினம் <i>*</i></label>
+<div class="opts"><label><input type="radio" name="gender" value="ஆண்" required>ஆண்</label><label><input type="radio" name="gender" value="பெண்">பெண்</label></div>
+<label>வசிக்கும் ஊர் / பகுதி <i>*</i><input name="area" required></label>
+<label>T-Shirt அளவு <i>*</i></label>
+<div class="opts"><label><input type="radio" name="tshirt" value="XS" required>XS</label><label><input type="radio" name="tshirt" value="S">S</label><label><input type="radio" name="tshirt" value="M">M</label><label><input type="radio" name="tshirt" value="L">L</label><label><input type="radio" name="tshirt" value="XL">XL</label></div>
+<label>முக்கிய உடல்நிலை தகவல் <i>*</i><input name="health" placeholder="இல்லை என்றால் 'இல்லை' என எழுதவும்" required></label>
+<div class="pay" style="margin-top:20px">பதிவு கட்டணம்<big>₹300</big>GPay: <span id="gp"></span><div id="upi" class="note"></div></div>
+<label>GPay Screenshot பதிவேற்றவும் <i>*</i><input name="shot" type="file" accept="image/*" required></label>
+<label class="opts" style="border:0;padding:0;margin-top:16px;align-items:flex-start;cursor:default"><input type="checkbox" name="pledge" required style="margin-top:6px"><span>உறுதிமொழி: மாரத்தானில் முழு விருப்பத்துடன் கலந்து கொள்கிறேன். ஏற்பாட்டாளர்கள் வழங்கும் பாதுகாப்பு வழிமுறைகளைப் பின்பற்றுவேன். போதை பழக்கத்தை ஒழித்து விழிப்புணர்வு ஏற்படுத்த உறுதியளிக்கிறேன்.</span></label>
+<div id="err" class="err" role="alert"></div>
+<button class="btn" id="go">Submit registration / பதிவு செய்</button>
+</form>
+<section id="done" class="card ok" hidden><h2>பதிவு பெறப்பட்டது ✔</h2><p>Your registration is received. After payment verification, your Registration No. will be sent on WhatsApp.</p><p class="note">சந்தேகங்களுக்கு: 9384280149 / 8122228155</p></section>
+</main>
+<script src="app.js"></script>
+<script>
+document.getElementById("gp").textContent=GPAY_NUMBER;
+if(UPI_ID)document.getElementById("upi").textContent="UPI ID: "+UPI_ID;
+const f=document.getElementById("f"),err=document.getElementById("err"),go=document.getElementById("go");
+f.addEventListener("submit",async e=>{
+  e.preventDefault();err.textContent="";
+  if(!f.checkValidity()){f.reportValidity();return}
+  go.disabled=true;go.textContent="Submitting...";
+  try{
+    const d=new FormData(f);
+    const url=await uploadFile(d.get("shot"),"payments");
+    const {error}=await sb.from("registrations").insert({
+      full_name:d.get("full_name").trim(),age_group:d.get("age_group"),gender:d.get("gender"),
+      mobile:d.get("mobile"),whatsapp:d.get("whatsapp")||d.get("mobile"),area:d.get("area").trim(),
+      tshirt:d.get("tshirt"),health:d.get("health").trim(),screenshot_url:url});
+    if(error)throw error;
+    f.hidden=true;document.getElementById("done").hidden=false;scrollTo(0,0);
+  }catch(x){err.textContent="Could not submit: "+(x.message||x)+" — please retry or call 9384280149.";go.disabled=false;go.textContent="Submit registration / பதிவு செய்"}
+});
+</script></body></html>
