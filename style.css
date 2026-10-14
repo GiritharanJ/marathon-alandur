@@ -23,7 +23,97 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid v
 .opts label:has(input:checked){background:var(--green);border-color:var(--green);color:#fff}
 .btn{display:block;width:100%;margin-top:18px;padding:14px;border:0;border-radius:12px;background:var(--red);color:#fff;font:700 18px inherit;font-family:inherit;cursor:pointer}
 .btn:disabled{opacity:.6}.btn.alt{background:var(--green)}
-.pay{background:var(--yellow);color:#16202e;border-radius:12px;padding:14px;text-align:center;font-weight:700}
+.pay{
+  background:var(--yellow);
+  color:#16202e;
+  border-radius:14px;
+  padding:18px;
+  text-align:center;
+  font-weight:700;
+  border:2px solid #e0c900;
+}
+
+.pay-title{
+  font-size:21px;
+  margin-bottom:2px;
+}
+
+.pay-amount{
+  font-size:36px;
+  font-weight:900;
+  line-height:1.2;
+  margin-bottom:12px;
+}
+
+.pay-section{
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  margin-top:10px;
+}
+
+.upi-id{
+  font-size:18px;
+  margin:5px 0 10px;
+  font-weight:800;
+}
+
+.upi-btn{
+  display:block;
+  background:var(--green);
+  color:#fff;
+  text-decoration:none;
+  padding:11px 14px;
+  border-radius:9px;
+  font-weight:800;
+}
+
+.upi-btn:hover{
+  opacity:.9;
+}
+
+.qr-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin-top:12px;
+}
+
+.qr-box strong{
+  display:block;
+  margin-bottom:8px;
+}
+
+.qr-box img{
+  display:block;
+  width:180px;
+  height:180px;
+  object-fit:contain;
+  margin:8px auto;
+  border-radius:8px;
+}
+
+.qr-box small{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+}
+
+.bank-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin-top:12px;
+  text-align:left;
+  line-height:1.8;
+}
+
+.bank-box strong{
+  display:block;
+  text-align:center;
+  margin-bottom:5px;
+}
+
 .pay big{display:block;font-size:30px}
 .note{font-size:14px;opacity:.8}.err{color:var(--red);font-weight:600;margin-top:10px}
 .ok{text-align:center;padding:30px 10px}.ok h2{color:var(--green);font-size:26px}
