@@ -31,8 +31,43 @@
 <label>T-Shirt அளவு <i>*</i></label>
 <div class="opts"><label><input type="radio" name="tshirt" value="XS" required>XS</label><label><input type="radio" name="tshirt" value="S">S</label><label><input type="radio" name="tshirt" value="M">M</label><label><input type="radio" name="tshirt" value="L">L</label><label><input type="radio" name="tshirt" value="XL">XL</label></div>
 <label>முக்கிய உடல்நிலை தகவல் <i>*</i><input name="health" placeholder="இல்லை என்றால் 'இல்லை' என எழுதவும்" required></label>
-<div class="pay" style="margin-top:20px">பதிவு கட்டணம்<big>₹300</big>GPay: <span id="gp"></span><div id="upi" class="note"></div></div>
-<label>GPay Screenshot பதிவேற்றவும் <i>*</i><input name="shot" type="file" accept="image/*" required></label>
+<div class="pay">
+  <div class="pay-title">பதிவு கட்டணம்</div>
+
+  <div class="pay-amount">₹300</div>
+
+  <div class="pay-section">
+    <strong>UPI / GPay</strong>
+    <div class="upi-id">8122228155@upi</div>
+
+    <a
+      class="upi-btn"
+      href="upi://pay?pa=8122228155@upi&pn=Marathon%20Registration&am=300&cu=INR"
+    >
+      📱 UPI மூலம் ₹300 செலுத்தவும்
+    </a>
+  </div>
+
+  <div class="qr-box">
+    <strong>QR Code மூலம் செலுத்தவும்</strong>
+    <img src="qr.jpg" alt="₹300 UPI Payment QR Code">
+    <small>Google Pay / PhonePe / Paytm மூலம் Scan செய்யவும்</small>
+  </div>
+
+  <div class="bank-box">
+    <strong>Net Banking / Bank Transfer</strong>
+
+    <div>Bank Name: <b>Tamil Nadu mercantile Bank</b></div>
+    <div>Account No: <b>409100050301086</b></div>
+    <div>IFSC: <b>TMBL0000409</b></div> or
+    <div>Bank Name: <b>State Bank of India</b></div>
+    <div>Account No: <b>41889186475</b></div>
+    <div>IFSC: <b>SBIN0007140</b></div>
+  </div>
+
+
+</div>
+<label>Payment Screenshot பதிவேற்றவும் <i>*</i><input name="shot" type="file" accept="image/*" required></label>
 <label class="opts" style="border:0;padding:0;margin-top:16px;align-items:flex-start;cursor:default"><input type="checkbox" name="pledge" required style="margin-top:6px"><span>உறுதிமொழி: மாரத்தானில் முழு விருப்பத்துடன் கலந்து கொள்கிறேன். ஏற்பாட்டாளர்கள் வழங்கும் பாதுகாப்பு வழிமுறைகளைப் பின்பற்றுவேன். போதை பழக்கத்தை ஒழித்து விழிப்புணர்வு ஏற்படுத்த உறுதியளிக்கிறேன்.</span></label>
 <div id="err" class="err" role="alert"></div>
 <button class="btn" id="go">Submit registration / பதிவு செய்</button>
