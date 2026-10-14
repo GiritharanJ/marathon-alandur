@@ -107,31 +107,39 @@ f.addEventListener("submit", async (e) => {
     const screenshotUrl = await uploadFile(file, "payments");
 
     // Insert registration
-    const { data, error } = await sb
-      .from("registrations")
-      .insert({
-        full_name: d.get("full_name").trim(),
+ const { data, error } = await sb
+  .from("registrations")
+  .insert({
+    full_name: d.get("full_name").trim(),
 
-        phone: d.get("mobile"),
+    age_group: d.get("age_group"),
 
-        gender: d.get("gender"),
+    phone: d.get("mobile"),
 
-        address: d.get("area").trim(),
+    whatsapp: d.get("whatsapp") || d.get("mobile"),
 
-        tshirt_size: d.get("tshirt"),
+    gender: d.get("gender"),
 
-        payment_amount: 300,
+    address: d.get("area").trim(),
 
-        payment_method: "UPI / Bank Transfer",
+    tshirt_size: d.get("tshirt"),
 
-        payment_screenshot: screenshotUrl,
+    health_info: d.get("health").trim(),
 
-        payment_status: "Pending",
+    pledge: d.get("pledge") === "on",
 
-        registration_status: "Pending"
-      })
-      .select()
-      .single();
+    payment_amount: 300,
+
+    payment_method: "UPI / Bank Transfer",
+
+    payment_screenshot: screenshotUrl,
+
+    payment_status: "Pending",
+
+    registration_status: "Pending"
+  })
+  .select()
+  .single();
 
     if (error) {
       console.error("Supabase insert error:", error);
