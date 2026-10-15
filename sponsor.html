@@ -1,159 +1,1731 @@
-<!doctype html><html lang="ta"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Sponsor - போதை விழிப்புணர்வு மாரத்தான் 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;600;800&display=swap" rel="stylesheet">
+
+<meta name="description"
+content="போதை விழிப்புணர்வு மாரத்தான் 2026 - Sponsor ஆகுங்கள். Support the awareness marathon at Alandur, Chennai.">
+
+<link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script></head>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+
+<style>
+
+/* =========================
+   PAGE VARIABLES
+========================= */
+
+:root{
+  --green:#0a2107;
+  --green2:#123d0d;
+  --lime:#2df213;
+  --yellow:#f3ff0a;
+  --white:#ffffff;
+  --muted:#667085;
+  --border:#e6e9ee;
+  --bg:#f5f7f3;
+  --card:#ffffff;
+  --danger:#c62828;
+}
+
+/* =========================
+   RESET
+========================= */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:"Anek Tamil",sans-serif;
+  background:var(--bg);
+  color:#142018;
+}
+
+button,
+input,
+textarea{
+  font-family:inherit;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.sponsor-hero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(45,242,19,.18),transparent 30%),
+    radial-gradient(circle at 10% 90%,rgba(243,255,10,.10),transparent 30%),
+    linear-gradient(135deg,#071705,#0a2107 55%,#123d0d);
+  color:white;
+  padding:42px 20px 58px;
+}
+
+.sponsor-hero::before{
+  content:"";
+  position:absolute;
+  width:420px;
+  height:420px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:50%;
+  right:-180px;
+  top:-160px;
+}
+
+.sponsor-hero::after{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  border:1px solid rgba(45,242,19,.14);
+  border-radius:50%;
+  left:-130px;
+  bottom:-140px;
+}
+
+.hero-inner{
+  position:relative;
+  z-index:2;
+  max-width:1050px;
+  margin:auto;
+  text-align:center;
+}
+
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 18px;
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  color:var(--yellow);
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+.brand::before{
+  content:"●";
+  color:var(--lime);
+}
+
+.hero-title{
+  margin:0;
+  font-size:clamp(36px,7vw,72px);
+  line-height:1.05;
+  font-weight:800;
+}
+
+.hero-title span{
+  color:var(--lime);
+}
+
+.hero-subtitle{
+  max-width:720px;
+  margin:20px auto 0;
+  color:rgba(255,255,255,.82);
+  font-size:18px;
+  line-height:1.7;
+}
+
+.event-info{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+
+.event-pill{
+  padding:10px 17px;
+  border-radius:12px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  font-weight:600;
+  font-size:14px;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.top-nav{
+  background:white;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.nav-inner{
+  max-width:1050px;
+  margin:auto;
+  padding:12px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.back-link{
+  text-decoration:none;
+  color:var(--green);
+  font-weight:700;
+  font-size:15px;
+}
+
+.nav-cta{
+  text-decoration:none;
+  background:var(--green);
+  color:white;
+  padding:9px 16px;
+  border-radius:10px;
+  font-weight:700;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.page{
+  max-width:1050px;
+  margin:auto;
+  padding:42px 18px 80px;
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-heading{
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.section-heading .eyebrow{
+  color:#3d7d33;
+  font-size:14px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.section-heading h2{
+  margin:7px 0 8px;
+  font-size:clamp(28px,5vw,42px);
+  color:var(--green);
+}
+
+.section-heading p{
+  margin:0 auto;
+  max-width:650px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* =========================
+   SPONSOR HIGHLIGHT
+========================= */
+
+.impact-box{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-bottom:40px;
+}
+
+.impact-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(0,0,0,.04);
+}
+
+.impact-icon{
+  font-size:28px;
+  margin-bottom:7px;
+}
+
+.impact-card strong{
+  display:block;
+  font-size:18px;
+  color:var(--green);
+}
+
+.impact-card span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* =========================
+   FORM CARD
+========================= */
+
+.sponsor-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:clamp(20px,4vw,38px);
+  box-shadow:0 15px 50px rgba(10,33,7,.08);
+}
+
+.form-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:8px;
+}
+
+.form-title-icon{
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  background:var(--green);
+  color:var(--yellow);
+  font-size:23px;
+}
+
+.form-title h2{
+  margin:0;
+  color:var(--green);
+  font-size:25px;
+}
+
+.form-description{
+  color:var(--muted);
+  margin:0 0 25px;
+}
+
+/* =========================
+   TIER GRID
+========================= */
+
+.tiers{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin:18px 0 30px;
+}
+
+.tier{
+  position:relative;
+}
+
+.tier input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+.tier label{
+  display:block;
+  height:100%;
+  padding:18px;
+  border:2px solid #e7eae7;
+  border-radius:16px;
+  cursor:pointer;
+  transition:.2s ease;
+  background:#fff;
+}
+
+.tier label:hover{
+  border-color:#8fdc82;
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(10,33,7,.07);
+}
+
+.tier input:checked + label{
+  border-color:var(--lime);
+  background:#f4fff1;
+  box-shadow:0 0 0 3px rgba(45,242,19,.12);
+}
+
+.tier-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.tier-name{
+  font-size:18px;
+  font-weight:800;
+  color:var(--green);
+}
+
+.tier-price{
+  white-space:nowrap;
+  padding:5px 9px;
+  background:var(--green);
+  color:white;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.tier-description{
+  display:block;
+  margin-top:7px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.partner-badge{
+  display:inline-block;
+  margin-top:9px;
+  padding:4px 8px;
+  background:#f1f4ef;
+  border-radius:6px;
+  color:#477040;
+  font-size:11px;
+  font-weight:700;
+}
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  font-weight:700;
+  color:#26352a;
+  font-size:14px;
+}
+
+.required{
+  color:#d32f2f;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  border:1px solid #dfe4df;
+  border-radius:12px;
+  padding:13px 14px;
+  font-size:15px;
+  outline:none;
+  background:#fff;
+  transition:.2s;
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color:#73c868;
+  box-shadow:0 0 0 3px rgba(45,242,19,.10);
+}
+
+.field textarea{
+  resize:vertical;
+  min-height:100px;
+}
+
+/* =========================
+   UPLOAD
+========================= */
+
+.upload-box{
+  border:2px dashed #cfd8cf;
+  border-radius:14px;
+  padding:18px;
+  background:#fafcf9;
+}
+
+.upload-box input{
+  border:0;
+  padding:5px 0;
+  background:transparent;
+}
+
+.upload-note{
+  color:#7a857c;
+  font-size:12px;
+  margin-top:7px;
+}
+
+/* =========================
+   PAYMENT INFO
+========================= */
+
+.payment-note{
+  margin:25px 0;
+  padding:17px;
+  border-radius:14px;
+  background:#fffbea;
+  border:1px solid #f1e49c;
+}
+
+.payment-note strong{
+  color:#725e00;
+}
+
+.payment-note p{
+  margin:5px 0 0;
+  color:#756c3b;
+  font-size:13px;
+}
+
+/* =========================
+   ERROR
+========================= */
+
+.err{
+  min-height:22px;
+  margin:12px 0;
+  color:var(--danger);
+  font-weight:600;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.submit-btn{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:16px 20px;
+  background:var(--green);
+  color:white;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.submit-btn:hover{
+  background:#123d0d;
+  transform:translateY(-1px);
+}
+
+.submit-btn:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.submit-note{
+  text-align:center;
+  color:#7a857c;
+  font-size:12px;
+  margin:10px 0 0;
+}
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success{
+  text-align:center;
+  background:white;
+  border:1px solid #cfe8ca;
+  border-radius:24px;
+  padding:50px 25px;
+  box-shadow:0 15px 50px rgba(10,33,7,.07);
+}
+
+.success-icon{
+  width:70px;
+  height:70px;
+  margin:0 auto 15px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#e9ffe5;
+  font-size:35px;
+}
+
+.success h2{
+  color:var(--green);
+  margin:0 0 10px;
+  font-size:32px;
+}
+
+.success p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.contact{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 16px;
+  border-radius:10px;
+  background:var(--green);
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  background:var(--green);
+  color:white;
+  text-align:center;
+  padding:28px 18px;
+}
+
+.footer strong{
+  color:var(--yellow);
+}
+
+.footer p{
+  margin:5px 0;
+  color:rgba(255,255,255,.7);
+  font-size:13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+  .sponsor-hero{
+    padding:34px 16px 42px;
+  }
+
+  .hero-title{
+    font-size:38px;
+  }
+
+  .hero-subtitle{
+    font-size:15px;
+  }
+
+  .event-info{
+    gap:8px;
+  }
+
+  .event-pill{
+    font-size:12px;
+    padding:8px 11px;
+  }
+
+  .nav-inner{
+    padding:10px 14px;
+  }
+
+  .nav-cta{
+    display:none;
+  }
+
+  .page{
+    padding:28px 12px 55px;
+  }
+
+  .impact-box{
+    grid-template-columns:1fr;
+  }
+
+  .tiers{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .sponsor-card{
+    border-radius:18px;
+    padding:18px;
+  }
+
+  .tier-top{
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .tier-price{
+    align-self:flex-start;
+  }
+
+}
+
+</style>
+</head>
+
 <body>
-<header class="hero"><p class="brand">CHENNAI MARATHON FRIENDS</p>
-<h1 class="title">ஸ்பான்சர் ஆகுங்கள்<br><b>Run for a Better Tomorrow</b></h1>
-<p class="sub">Drugs kill dreams. Stand with Alandur's runners on 31 Oct 2026.</p></header>
-<nav><a href="index.html">← Runner registration</a></nav>
-<main>
-<form id="f" class="card" novalidate>
-<h2>Choose a sponsorship</h2>
-<!-- EDIT tier names and amounts to your real packages -->
-<div class="tiers">
 
-  <label>
-    <input type="radio" name="tier" value="Title Sponsor|100000" required>
-    <span>
-      <b>Title Sponsor – ₹1,00,000</b><br>
-      <small>Name on banner, T-shirt and stage</small>
-    </span>
-  </label>
+<!-- =========================
+     HERO
+========================= -->
 
-  <label>
-    <input type="radio" name="tier" value="Gold|50000">
-    <span>
-      <b>Gold Sponsor – ₹50,000</b><br>
-      <small>Logo on T-shirt and main banners</small>
-    </span>
-  </label>
+<header class="sponsor-hero">
 
-  <label>
-    <input type="radio" name="tier" value="Silver|25000">
-    <span>
-      <b>Silver Sponsor – ₹25,000</b><br>
-      <small>Logo on event banners</small>
-    </span>
-  </label>
+  <div class="hero-inner">
 
-  <label>
-    <input type="radio" name="tier" value="Supporter|5000">
-    <span>
-      <b>Supporter – ₹10,000</b><br>
-      <small>Name on thank-you board</small>
-    </span>
-  </label>
+    <div class="brand">
+      CHENNAI MARATHON FRIENDS
+    </div>
 
-  <label>
-    <input type="radio" name="tier" value="Sports Partner|0">
-    <span>
-      <b>🏃 Sports Partner - ₹10,000</b><br>
-      <small>Sports equipment, training or sports support</small>
-    </span>
-  </label>
+    <h1 class="hero-title">
+      ஸ்பான்சர் <span>ஆகுங்கள்</span>
+    </h1>
 
-  <label>
-    <input type="radio" name="tier" value="Fitness Partner|0">
-    <span>
-      <b>💪 Fitness Partner - ₹10,000</b><br>
-      <small>Fitness, gym or training support</small>
-    </span>
-  </label>
+    <p class="hero-subtitle">
+      போதை விழிப்புணர்வு மாரத்தான் 2026-க்கு உங்கள் நிறுவனத்தின்
+      ஆதரவை வழங்குங்கள். ஒன்றாக ஓடி, ஒரு நல்ல எதிர்காலத்தை உருவாக்குவோம்.
+    </p>
 
-  <label>
-    <input type="radio" name="tier" value="Radio Partner|0">
-    <span>
-      <b>📻 Radio Partner - ₹10,000</b><br>
-      <small>Radio promotion and media support</small>
-    </span>
-  </label>
+    <div class="event-info">
 
-  <label>
-    <input type="radio" name="tier" value="Hydration Partner|0">
-    <span>
-      <b>💧 Hydration Partner - ₹10,000</b><br>
-      <small>Drinking water and hydration support</small>
-    </span>
-  </label>
+      <div class="event-pill">
+        📅 31 October 2026
+      </div>
 
-  <label>
-    <input type="radio" name="tier" value="Energy Partner|0">
-    <span>
-      <b>⚡ Energy Partner - ₹10,000</b><br>
-      <small>Energy drinks, nutrition or refreshments</small>
-    </span>
-  </label>
+      <div class="event-pill">
+        ⏰ காலை 5:00
+      </div>
 
-  <label>
-    <input type="radio" name="tier" value="Accessory Partner|0">
-    <span>
-      <b>🎒 Accessory Partner - ₹10,000</b><br>
-      <small>Caps, bags, accessories or participant kits</small>
-    </span>
-  </label>
+      <div class="event-pill">
+        📍 ஆலந்தூர் நீதிமன்றம், சென்னை
+      </div>
 
-  <label>
-    <input type="radio" name="tier" value="Organic Partner|0">
-    <span>
-      <b>🌱 Organic Partner - ₹10,000</b><br>
-      <small>Organic, natural or eco-friendly products</small>
-    </span>
-  </label>
+    </div>
 
-  <label>
-    <input type="radio" name="tier" value="NGO Partner|0">
-    <span>
-      <b>🤝 NGO Partner - ₹10,000</b><br>
-      <small>Social awareness and community support</small>
-    </span>
-  </label>
+  </div>
 
-  <label>
-    <input type="radio" name="tier" value="Medical Partner|0">
-    <span>
-      <b>🩺 Medical Partner - ₹10,000</b><br>
-      <small>Medical team, first aid and emergency support</small>
-    </span>
-  </label>
+</header>
 
-  <label>
-    <input type="radio" name="tier" value="Custom|0">
-    <span>
-      <b>Custom / In-kind Partner</b><br>
-      <small>Water, medals, refreshments, equipment, services, etc.</small>
-    </span>
-  </label>
 
-</div>
-<label>Organisation / Name <i>*</i><input name="org_name" required></label>
-<label>Contact person <i>*</i><input name="contact_name" required></label>
-<label>Mobile <i>*</i><input name="mobile" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required></label>
-<label>Email<input name="email" type="email"></label>
-<label>Amount / what you will provide<input name="amount" type="number" min="0" placeholder="₹ (optional for in-kind)"></label>
-<label>Message<textarea name="message" rows="3"></textarea></label>
-<label>Payment proof (optional)<input name="proof" type="file" accept="image/*,application/pdf"></label>
-<div id="err" class="err" role="alert"></div>
-<button class="btn alt" id="go">Send sponsorship request</button>
-</form>
-<section id="done" class="card ok" hidden><h2>Thank you ✔</h2><p>Our team will call you within 24 hours. 9384280149 / 8122228155</p></section>
+<!-- =========================
+     NAV
+========================= -->
+
+<nav class="top-nav">
+
+  <div class="nav-inner">
+
+    <a href="index.html" class="back-link">
+      ← Runner Registration
+    </a>
+
+    <a href="#sponsor-form" class="nav-cta">
+      Sponsor Now
+    </a>
+
+  </div>
+
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="page">
+
+
+  <!-- IMPACT -->
+
+  <section>
+
+    <div class="section-heading">
+
+      <div class="eyebrow">
+        Make an Impact
+      </div>
+
+      <h2>
+        உங்கள் ஆதரவு ஒரு மாற்றத்தை உருவாக்கும்
+      </h2>
+
+      <p>
+        இந்த விழிப்புணர்வு மாரத்தான் மூலம் இளைஞர்கள் மற்றும்
+        பொதுமக்களிடையே போதைப்பொருள் எதிர்ப்பு விழிப்புணர்வை
+        உருவாக்குவதற்கு உங்கள் பங்களிப்பு உதவும்.
+      </p>
+
+    </div>
+
+
+    <div class="impact-box">
+
+      <div class="impact-card">
+        <div class="impact-icon">🏃</div>
+        <strong>Awareness Run</strong>
+        <span>போதை எதிர்ப்பு விழிப்புணர்வு</span>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon">🤝</div>
+        <strong>Community Support</strong>
+        <span>சமூகத்தின் ஒன்றுபட்ட ஆதரவு</span>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon">🌱</div>
+        <strong>Better Tomorrow</strong>
+        <span>ஆரோக்கியமான எதிர்காலம்</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FORM
+  ========================= -->
+
+  <form
+    id="f"
+    class="sponsor-card"
+    novalidate
+    id="sponsor-form"
+  >
+
+    <div class="form-title">
+
+      <div class="form-title-icon">
+        🤝
+      </div>
+
+      <div>
+        <h2>Choose Your Sponsorship</h2>
+      </div>
+
+    </div>
+
+    <p class="form-description">
+      உங்களுக்கு ஏற்ற sponsorship / partner category-ஐ தேர்வு செய்து
+      உங்கள் விவரங்களை பதிவு செய்யுங்கள்.
+    </p>
+
+
+    <!-- =========================
+         SPONSOR TIERS
+    ========================= -->
+
+    <div class="tiers">
+
+
+      <!-- TITLE -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="title"
+          name="tier"
+          value="Title Sponsor|100000"
+          required
+        >
+
+        <label for="title">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🏆 Title Sponsor
+            </div>
+
+            <div class="tier-price">
+              ₹1,00,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Name on banner, T-shirt and main stage.
+          </span>
+
+          <span class="partner-badge">
+            PREMIUM VISIBILITY
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- GOLD -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="gold"
+          name="tier"
+          value="Gold|50000"
+        >
+
+        <label for="gold">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🥇 Gold Sponsor
+            </div>
+
+            <div class="tier-price">
+              ₹50,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Logo on T-shirt and main event banners.
+          </span>
+
+          <span class="partner-badge">
+            HIGH VISIBILITY
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- SILVER -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="silver"
+          name="tier"
+          value="Silver|25000"
+        >
+
+        <label for="silver">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🥈 Silver Sponsor
+            </div>
+
+            <div class="tier-price">
+              ₹25,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Logo on event banners and promotional materials.
+          </span>
+
+          <span class="partner-badge">
+            EVENT VISIBILITY
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- SUPPORTER -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="supporter"
+          name="tier"
+          value="Supporter|10000"
+        >
+
+        <label for="supporter">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🤝 Supporter
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Name on supporter / thank-you board.
+          </span>
+
+          <span class="partner-badge">
+            COMMUNITY SUPPORT
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- SPORTS -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="sports"
+          name="tier"
+          value="Sports Partner|10000"
+        >
+
+        <label for="sports">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🏃 Sports Partner
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Sports equipment, training or sports support.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- FITNESS -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="fitness"
+          name="tier"
+          value="Fitness Partner|10000"
+        >
+
+        <label for="fitness">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              💪 Fitness Partner
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Fitness, gym or training support.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- RADIO -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="radio"
+          name="tier"
+          value="Radio Partner|10000"
+        >
+
+        <label for="radio">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              📻 Radio Partner
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Radio promotion and media support.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- HYDRATION -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="hydration"
+          name="tier"
+          value="Hydration Partner|10000"
+        >
+
+        <label for="hydration">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              💧 Hydration Partner
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Drinking water and hydration support.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- ENERGY -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="energy"
+          name="tier"
+          value="Energy Partner|10000"
+        >
+
+        <label for="energy">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              ⚡ Energy Partner
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Energy drinks, nutrition or refreshments.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- ACCESSORY -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="accessory"
+          name="tier"
+          value="Accessory Partner|10000"
+        >
+
+        <label for="accessory">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🎒 Accessory Partner
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Caps, bags, accessories or participant kits.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- ORGANIC -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="organic"
+          name="tier"
+          value="Organic Partner|10000"
+        >
+
+        <label for="organic">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🌱 Organic Partner
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Organic, natural or eco-friendly products.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- NGO -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="ngo"
+          name="tier"
+          value="NGO Partner|10000"
+        >
+
+        <label for="ngo">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🤝 NGO Partner
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Social awareness and community support.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- MEDICAL -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="medical"
+          name="tier"
+          value="Medical Partner|10000"
+        >
+
+        <label for="medical">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🩺 Medical Partner
+            </div>
+
+            <div class="tier-price">
+              ₹10,000
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Medical team, first aid and emergency support.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- SUPPORT BY -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="supportby"
+          name="tier"
+          value="Support By|0"
+        >
+
+        <label for="supportby">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              ❤️ Support By
+            </div>
+
+            <div class="tier-price">
+              Custom
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Event materials, services, products or other support.
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- CUSTOM -->
+
+      <div class="tier">
+
+        <input
+          type="radio"
+          id="custom"
+          name="tier"
+          value="Custom / In-kind Partner|0"
+        >
+
+        <label for="custom">
+
+          <div class="tier-top">
+
+            <div class="tier-name">
+              🎁 Custom / In-kind
+            </div>
+
+            <div class="tier-price">
+              Custom
+            </div>
+
+          </div>
+
+          <span class="tier-description">
+            Water, medals, refreshments, equipment, services, etc.
+          </span>
+
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         CONTACT DETAILS
+    ========================= -->
+
+    <div class="form-grid">
+
+      <div class="field">
+
+        <label>
+          Organisation / Name
+          <span class="required">*</span>
+        </label>
+
+        <input
+          name="org_name"
+          placeholder="Company / Organisation name"
+          required
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Contact Person
+          <span class="required">*</span>
+        </label>
+
+        <input
+          name="contact_name"
+          placeholder="Contact person name"
+          required
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Mobile
+          <span class="required">*</span>
+        </label>
+
+        <input
+          name="mobile"
+          type="tel"
+          inputmode="numeric"
+          pattern="[0-9]{10}"
+          maxlength="10"
+          placeholder="10-digit mobile number"
+          required
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Email
+        </label>
+
+        <input
+          name="email"
+          type="email"
+          placeholder="name@example.com"
+        >
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          Amount / What you will provide
+        </label>
+
+        <input
+          name="amount"
+          type="number"
+          min="0"
+          placeholder="₹ Amount / describe if in-kind"
+        >
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          Message
+        </label>
+
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Tell us how you would like to support the event..."
+        ></textarea>
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          Payment Proof
+        </label>
+
+        <div class="upload-box">
+
+          <input
+            name="proof"
+            type="file"
+            accept="image/*,application/pdf"
+          >
+
+          <div class="upload-note">
+            Optional • JPG, PNG or PDF • Maximum 5 MB
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         PAYMENT NOTE
+    ========================= -->
+
+    <div class="payment-note">
+
+      <strong>💳 Payment information</strong>
+
+      <p>
+        Sponsorship payment can be completed through the
+        event payment details. If you have not made the payment yet,
+        you can submit this request first. Our team will contact you
+        and confirm the payment process.
+      </p>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+      id="err"
+      class="err"
+      role="alert"
+    ></div>
+
+
+    <!-- BUTTON -->
+
+    <button
+      class="submit-btn"
+      id="go"
+      type="submit"
+    >
+      🤝 Send Sponsorship Request
+    </button>
+
+    <p class="submit-note">
+      By submitting this form, our event team may contact you
+      regarding sponsorship confirmation.
+    </p>
+
+  </form>
+
+
+  <!-- =========================
+       SUCCESS
+  ========================= -->
+
+  <section
+    id="done"
+    class="success"
+    hidden
+  >
+
+    <div class="success-icon">
+      ✓
+    </div>
+
+    <h2>
+      Thank You! 🎉
+    </h2>
+
+    <p>
+      உங்கள் sponsorship request வெற்றிகரமாக பதிவு செய்யப்பட்டுள்ளது.
+      எங்கள் குழு 24 மணி நேரத்திற்குள் உங்களை தொடர்புகொள்ளும்.
+    </p>
+
+    <a
+      class="contact"
+      href="tel:9384280149"
+    >
+      📞 Contact Event Team
+    </a>
+
+    <p>
+      9384280149 &nbsp; | &nbsp; 8122228155
+    </p>
+
+  </section>
+
 </main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+  <strong>CHENNAI MARATHON FRIENDS</strong>
+
+  <p>
+    போதை விழிப்புணர்வு மாரத்தான் - 2026
+  </p>
+
+  <p>
+    Run for a Better Tomorrow
+  </p>
+
+</footer>
+
+
+<!-- =========================
+     APP.JS
+========================= -->
+
 <script src="app.js"></script>
+
+
 <script>
-const f=document.getElementById("f"),err=document.getElementById("err"),go=document.getElementById("go");
-f.addEventListener("submit",async e=>{
-  e.preventDefault();err.textContent="";
-  if(!f.checkValidity()){f.reportValidity();return}
-  go.disabled=true;go.textContent="Sending...";
-  try{
-    const d=new FormData(f),[tier,def]=d.get("tier").split("|");
-    const proof=await uploadFile(d.get("proof"),"sponsors");
-    const {error}=await sb.from("sponsors").insert({org_name:d.get("org_name").trim(),contact_name:d.get("contact_name").trim(),
-      mobile:d.get("mobile"),email:d.get("email")||null,tier,amount:d.get("amount")?+d.get("amount"):+def,message:d.get("message")||null,proof_url:proof});
-    if(error)throw error;
-    f.hidden=true;document.getElementById("done").hidden=false;scrollTo(0,0);
-  }catch(x){err.textContent="Could not send: "+(x.message||x);go.disabled=false;go.textContent="Send sponsorship request"}
+
+const f = document.getElementById("f");
+const err = document.getElementById("err");
+const go = document.getElementById("go");
+
+f.addEventListener("submit", async e => {
+
+  e.preventDefault();
+
+  err.textContent = "";
+
+  if (!f.checkValidity()) {
+    f.reportValidity();
+    return;
+  }
+
+  go.disabled = true;
+  go.textContent = "Sending request...";
+
+  try {
+
+    const d = new FormData(f);
+
+    const selectedTier = d.get("tier");
+
+    if (!selectedTier) {
+      throw new Error("Please select a sponsorship category");
+    }
+
+    const [tier, defaultAmount] = selectedTier.split("|");
+
+    /* Upload proof only when user selected a file */
+
+    let proof = null;
+
+    const proofFile = d.get("proof");
+
+    if (proofFile && proofFile.size > 0) {
+      proof = await uploadFile(proofFile, "sponsors");
+    }
+
+    /* Amount entered by user overrides package default */
+
+    const amount = d.get("amount")
+      ? Number(d.get("amount"))
+      : Number(defaultAmount) || 0;
+
+
+    /* Insert sponsor */
+
+    const { error } = await sb
+      .from("sponsors")
+      .insert({
+
+        org_name: d.get("org_name").trim(),
+
+        contact_name: d.get("contact_name").trim(),
+
+        mobile: d.get("mobile").trim(),
+
+        email: d.get("email")
+          ? d.get("email").trim()
+          : null,
+
+        tier: tier,
+
+        amount: amount,
+
+        message: d.get("message")
+          ? d.get("message").trim()
+          : null,
+
+        proof_url: proof,
+
+        status: "new"
+
+      });
+
+
+    if (error) {
+      throw error;
+    }
+
+
+    /* SUCCESS */
+
+    f.hidden = true;
+
+    document.getElementById("done").hidden = false;
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+
+  } catch (x) {
+
+    console.error(x);
+
+    err.textContent =
+      "Could not send: " +
+      (x.message || x);
+
+
+    go.disabled = false;
+
+    go.textContent =
+      "🤝 Send Sponsorship Request";
+
+  }
+
 });
-</script></body></html>
+
+</script>
+
+</body>
+</html>
