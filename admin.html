@@ -65,8 +65,210 @@ function render(){
   else{$("th").innerHTML="<tr><th>Organisation</th><th>Contact</th><th>Mobile</th><th>Tier</th><th>Amount</th><th>Message</th><th>Proof</th><th>Status</th><th>Action</th></tr>";
    $("tb").innerHTML=R.map(r=>`<tr><td>${esc(r.org_name)}</td><td>${esc(r.contact_name)}</td><td>${r.mobile}</td><td>${r.tier}</td><td>${money(r.amount)}</td><td>${esc(r.message)}</td><td>${r.proof_url?`<button class="sm" onclick="open_('${r.proof_url}')">View</button>`:"-"}</td><td><span class="tag ${r.status}">${r.status}</span></td><td><button class="sm" onclick="setS('sponsors','${r.id}','contacted')">Contacted</button> <button class="sm" onclick="setS('sponsors','${r.id}','confirmed')">Confirm</button></td></tr>`).join("")}
   if(!R.length)$("tb").innerHTML='<tr><td colspan="11">Nothing here yet.</td></tr>'}
-async function setS(t,id,s){const upd=t==="registrations"?{registration_status:s,payment_status:s==="Confirmed"?"Verified":s==="Rejected"?"Rejected":"Pending",verified_at:new Date().toISOString()}:{status:s};const {error}=await sb.from(t).update(upd).eq("id",id);if(error)alert(error.message);else load()}
-$("csv").onclick=()=>{const R=rows();if(!R.length)return;const k=Object.keys(R[0]);
+async function setS(t, id, s) {
+
+  /* Only registrations need WhatsApp notification */
+  if (t !== "registrations") {
+    const { error } = await sb
+      .from(t)
+      .update({ status: s })
+      .eq("id", id);
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    load();
+    return;
+  }
+
+  /* Find participant */
+  const person = regs.find(r => r.id === id);
+
+  if (!person) {
+    alert("Registration not found");
+    return;
+  }
+
+  /*
+    Open a blank tab immediately.
+    This helps prevent popup blocking after Supabase update.
+  */
+  const waWindow = window.open("about:blank", "_blank");
+
+  /* Update database */
+  const upd = {
+    registration_status: s,
+    payment_status:
+      s === "Confirmed"
+        ? "Verified"
+        : s === "Rejected"
+          ? "Rejected"
+          : "Pending",
+    verified_at: new Date().toISOString()
+  };
+
+  const { data, error } = await sb
+    .from("registrations")
+    .update(upd)
+    .eq("id", id)
+    .select("*")
+    .single();
+
+  if (error) {
+
+    if (waWindow) waWindow.close();
+
+    alert(error.message);
+    return;
+  }
+
+  /*
+    Use updated registration number.
+    Trigger/database can generate CMF-0001 etc.
+  */
+  const regNo =
+    data.registration_no ||
+    data.reg_no ||
+    person.registration_no ||
+    person.reg_no ||
+    "Pending";
+
+  /* WhatsApp number */
+  const mobile =
+    data.whatsapp ||
+    data.phone ||
+    data.mobile ||
+    person.whatsapp ||
+    person.phone ||
+    person.mobile;
+
+  if (!mobile) {
+
+    if (waWindow) waWindow.close();
+
+    alert("No WhatsApp/mobile number found for this participant.");
+    load();
+    return;
+  }
+
+  /*
+    Remove spaces, +, -, brackets etc.
+  */
+  let number = String(mobile).replace(/\D/g, "");
+
+  /*
+    Add India country code if only 10 digits.
+  */
+  if (number.length === 10) {
+    number = "91" + number;
+  }
+
+  let message = "";
+
+  /* =========================
+     CONFIRM MESSAGE
+  ========================= */
+
+  if (s === "Confirmed") {
+
+    message =
+`🏃 CHENNAI MARATHON FRIENDS
+
+✅ REGISTRATION CONFIRMED
+
+Dear ${data.full_name || person.full_name},
+
+Your registration for the Drug Awareness Marathon 2026 has been successfully confirmed.
+
+🆔 Registration No: ${regNo}
+
+📅 Date: 31 October 2026
+⏰ Time: 5:00 AM
+📍 Venue: Alandur Court, Chennai
+
+💳 Registration Fee: ₹300
+✅ Payment: Verified
+
+Please save your Registration No and arrive at the venue on time.
+
+🏃 RUN FOR A BETTER TOMORROW!
+
+Say No to Tobacco, Alcohol & Drugs.
+
+Thank you for joining the movement.
+
+CHENNAI MARATHON FRIENDS
+📞 9384280149`;
+
+  }
+
+  /* =========================
+     REJECT / PAYMENT REMINDER
+  ========================= */
+
+  else if (s === "Rejected") {
+
+    message =
+`🏃 CHENNAI MARATHON FRIENDS
+
+⚠️ PAYMENT VERIFICATION REQUIRED
+
+Dear ${data.full_name || person.full_name},
+
+We could not verify the ₹300 registration payment for the Drug Awareness Marathon 2026.
+
+📅 Event Date: 31 October 2026
+⏰ Time: 5:00 AM
+📍 Venue: Alandur Court, Chennai
+
+💳 Registration Fee: ₹300
+
+Please complete the registration payment and send your payment screenshot to this WhatsApp number.
+
+Once the payment is verified, your registration will be confirmed.
+
+📱 Contact: 9384280149
+
+Please complete the payment as soon as possible to secure your participation.
+
+🏃 RUN FOR A BETTER TOMORROW!
+
+CHENNAI MARATHON FRIENDS`;
+
+  }
+
+  /* =========================
+     OPEN WHATSAPP
+  ========================= */
+
+  const waUrl =
+    "https://wa.me/" +
+    number +
+    "?text=" +
+    encodeURIComponent(message);
+
+  if (waWindow) {
+
+    waWindow.location.href = waUrl;
+
+  } else {
+
+    /*
+      Popup was blocked.
+      Open in current tab instead.
+    */
+    window.location.href = waUrl;
+
+  }
+
+  /* Refresh admin dashboard */
+  load();
+}
+  
+  
+  $("csv").onclick=()=>{const R=rows();if(!R.length)return;const k=Object.keys(R[0]);
   const c=[k.join(",")].concat(R.map(r=>k.map(x=>'"'+String(r[x]??"").replace(/"/g,'""')+'"').join(","))).join("\n");
   const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+c],{type:"text/csv"}));a.download=tab+".csv";a.click()};
 setTab("reg");boot();
