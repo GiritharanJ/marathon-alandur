@@ -47,25 +47,25 @@ async function load(){
     sb.from("sponsors").select("*").order("created_at",{ascending:false}).then(r=>r.data||[])]);
   stats();render()}
 function stats(){
-  const c=regs.filter(r=>r.status==="confirmed"),ag=k=>c.filter(r=>r.age_group===k).length;
+  const c=regs.filter(r=>r.registration_status==="Confirmed"),ag=k=>c.filter(r=>r.age_group===k).length;
   const sp=spns.filter(s=>s.status==="confirmed").reduce((a,s)=>a+Number(s.amount||0),0);
-  $("stats").innerHTML=[["","Registrations",regs.length],["y","Pending",regs.filter(r=>r.status==="pending").length],["g","Confirmed",c.length],
+  $("stats").innerHTML=[["","Registrations",regs.length],["y","Pending",regs.filter(r=>r.registration_status==="Pending").length],["g","Confirmed",c.length],
    ["g","Runner fees",money(c.length*300)],["p","Sponsors",spns.length],["p","Sponsor funds",money(sp)],
    ["","6-13 / 13-17",ag("6-13")+" / "+ag("13-17")],["","18-40 / 40+",ag("18-40")+" / "+ag("40+")]]
    .map(([k,l,v])=>`<div class="stat ${k}">${l}<b>${v}</b></div>`).join("")}
 function setTab(t){tab=t;$("t1").classList.toggle("on",t==="reg");$("t2").classList.toggle("on",t==="spn");
-  $("ag").hidden=t==="spn";$("st").innerHTML='<option value="">All status</option>'+(t==="reg"?["pending","confirmed","rejected"]:["new","contacted","confirmed","declined"]).map(s=>`<option>${s}</option>`).join("");render()}
+  $("ag").hidden=t==="spn";$("st").innerHTML='<option value="">All status</option>'+(t==="reg"?["Pending","Confirmed","Rejected"]:["new","contacted","confirmed","declined"]).map(s=>`<option>${s}</option>`).join("");render()}
 $("t1").onclick=()=>setTab("reg");$("t2").onclick=()=>setTab("spn");["q","st","ag"].forEach(i=>$(i).oninput=render);
 function rows(){const q=$("q").value.toLowerCase(),st=$("st").value,ag=$("ag").value;
-  return(tab==="reg"?regs:spns).filter(r=>(!st||r.status===st)&&(tab==="spn"||!ag||r.age_group===ag)&&(!q||JSON.stringify(Object.values(r)).toLowerCase().includes(q)))}
+  return(tab==="reg"?regs:spns).filter(r=>(!st||(tab==="reg"?r.registration_status:r.status)===st)&&(tab==="spn"||!ag||r.age_group===ag)&&(!q||JSON.stringify(Object.values(r)).toLowerCase().includes(q)))}
 function render(){
   const R=rows();
   if(tab==="reg"){$("th").innerHTML="<tr><th>Reg No</th><th>Name</th><th>Age</th><th>Gender</th><th>Mobile</th><th>Area</th><th>T-shirt</th><th>Health</th><th>Proof</th><th>Status</th><th>Action</th></tr>";
-   $("tb").innerHTML=R.map(r=>`<tr><td>${r.reg_no||"-"}</td><td>${esc(r.full_name)}</td><td>${r.age_group}</td><td>${r.gender}</td><td><a href="https://wa.me/91${r.whatsapp||r.mobile}" target="_blank">${r.mobile}</a></td><td>${esc(r.area)}</td><td>${r.tshirt}</td><td>${esc(r.health)}</td><td><button class="sm" onclick="open_('${r.screenshot_url}')">View</button></td><td><span class="tag ${r.status}">${r.status}</span></td><td><button class="sm" onclick="setS('registrations','${r.id}','confirmed')">Confirm</button> <button class="sm" onclick="setS('registrations','${r.id}','rejected')">Reject</button></td></tr>`).join("")}
+   $("tb").innerHTML=R.map(r=>`<tr><td>${r.registration_no||"-"}</td><td>${esc(r.full_name)}</td><td>${r.age_group}</td><td>${r.gender}</td><td><a href="https://wa.me/91${r.whatsapp||r.phone}" target="_blank">${r.phone}</a></td><td>${esc(r.address)}</td><td>${r.tshirt_size}</td><td>${esc(r.health_info)}</td><td><button class="sm" onclick="open_('${r.payment_screenshot}')">View</button></td><td><span class="tag ${r.registration_status.toLowerCase()}">${r.registration_status}</span></td><td><button class="sm" onclick="setS('registrations','${r.id}','Confirmed')">Confirm</button> <button class="sm" onclick="setS('registrations','${r.id}','Rejected')">Reject</button></td></tr>`).join("")}
   else{$("th").innerHTML="<tr><th>Organisation</th><th>Contact</th><th>Mobile</th><th>Tier</th><th>Amount</th><th>Message</th><th>Proof</th><th>Status</th><th>Action</th></tr>";
    $("tb").innerHTML=R.map(r=>`<tr><td>${esc(r.org_name)}</td><td>${esc(r.contact_name)}</td><td>${r.mobile}</td><td>${r.tier}</td><td>${money(r.amount)}</td><td>${esc(r.message)}</td><td>${r.proof_url?`<button class="sm" onclick="open_('${r.proof_url}')">View</button>`:"-"}</td><td><span class="tag ${r.status}">${r.status}</span></td><td><button class="sm" onclick="setS('sponsors','${r.id}','contacted')">Contacted</button> <button class="sm" onclick="setS('sponsors','${r.id}','confirmed')">Confirm</button></td></tr>`).join("")}
   if(!R.length)$("tb").innerHTML='<tr><td colspan="11">Nothing here yet.</td></tr>'}
-async function setS(t,id,s){const {error}=await sb.from(t).update({status:s}).eq("id",id);if(error)alert(error.message);else load()}
+async function setS(t,id,s){const upd=t==="registrations"?{registration_status:s,payment_status:s==="Confirmed"?"Verified":s==="Rejected"?"Rejected":"Pending",verified_at:new Date().toISOString()}:{status:s};const {error}=await sb.from(t).update(upd).eq("id",id);if(error)alert(error.message);else load()}
 $("csv").onclick=()=>{const R=rows();if(!R.length)return;const k=Object.keys(R[0]);
   const c=[k.join(",")].concat(R.map(r=>k.map(x=>'"'+String(r[x]??"").replace(/"/g,'""')+'"').join(","))).join("\n");
   const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+c],{type:"text/csv"}));a.download=tab+".csv";a.click()};
